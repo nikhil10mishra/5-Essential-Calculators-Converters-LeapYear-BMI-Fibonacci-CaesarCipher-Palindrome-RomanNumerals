@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <script>
+		function calculateBMI() {
+			// Get input values
+			const weight = document.getElementById('weight').value;
+			const height = document.getElementById('height').value;
+
+			// Calculate BMI
+			const bmi = weight / ((height/100) ** 2);
+
+			// Determine BMI category
+			let category;
+			if (bmi < 18.5) {
+				category = 'Underweight';
+			} else if (bmi >= 18.5 && bmi < 25) {
+				category = 'Normal weight';
+			} else if (bmi >= 25 && bmi < 30) {
+				category = 'Overweight';
+			} else {
+				category = 'Obese';
+			}
+
+			// Display result
+			const result = document.getElementById('result');
+			result.innerHTML = `Your BMI is ${bmi.toFixed(1)} (${category})`;
+		}
+	</script>
+ <script>
+    function checkLeapYear() {
+      var year = document.getElementById("year").value;
+
+      // Check if the year is a leap year
+      if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+        document.getElementById("result_leap").innerHTML = year + " is a leap year.";
+      } else {
+        document.getElementById("result_leap").innerHTML = year + " is not a leap year.";
+      }
+    }
+  </script>
+   
+  <script >
+    function calculateWeeks() {
+  const age = document.getElementById("age").value;
+  const yearsLeft = 90 - age;
+  const weeksLeft = yearsLeft * 52;
+  const result = `You have ${weeksLeft} weeks left to live.`;
+  document.getElementById("answer").innerHTML = result;
+}
+
+  </script>
+
+<script>
+  function generate() {
+  const count = document.getElementById("count").value;
+  const fibonacciNumbers = [0, 1];
+  for (let i = 2; i < count; i++) {
+    fibonacciNumbers[i] = fibonacciNumbers[i - 1] + fibonacciNumbers[i - 2];
+  }
+  const result = fibonacciNumbers.slice(0, count).join(", ");
+  document.getElementById("resultFibonacciGenerater").innerHTML = result;
+}
+
+</script>
+<script>
+  function encrypt() {
+  const plaintext = document.getElementById("plaintext").value;
+  const shift = document.getElementById("shift").value;
+  let ciphertext = "";
+  for (let i = 0; i < plaintext.length; i++) {
+    let charCode = plaintext.charCodeAt(i);
+    if (charCode >= 65 && charCode <= 90) {
+      charCode = ((charCode - 65 + parseInt(shift)) % 26) + 65;
+    } else if (charCode >= 97 && charCode <= 122) {
+      charCode = ((charCode - 97 + parseInt(shift)) % 26) + 97;
+    }
+    ciphertext += String.fromCharCode(charCode);
+  }
+  document.getElementById("resultcaesars-cipher").innerHTML = ciphertext;
+}
+
+</script>
+<script>
+  function checkPalindrome() {
+  const input = document.getElementById("input").value;
+  const reversed = input.split("").reverse().join("");
+  const isPalindrome = input === reversed;
+  const result = isPalindrome ? "The input is a palindrome" : "The input is not a palindrome";
+  document.getElementById("resultpalindrome-checker").innerHTML = result;
+}
+
+</script>
+
+<script>
+  function convertToRoman(num) {
+    // function to convert decimal numbers to roman numerals
+    let romanNumeral = '';
+    const romanNumeralsMap = [
+      { value: 1000, numeral: 'M' },
+      { value: 900, numeral: 'CM' },
+      { value: 500, numeral: 'D' },
+      { value: 400, numeral: 'CD' },
+      { value: 100, numeral: 'C' },
+      { value: 90, numeral: 'XC' },
+      { value: 50, numeral: 'L' },
+      { value: 40, numeral: 'XL' },
+      { value: 10, numeral: 'X' },
+      { value: 9, numeral: 'IX' },
+      { value: 5, numeral: 'V' },
+      { value: 4, numeral: 'IV' },
+      { value: 1, numeral: 'I' }
+    ];
+
+    for (let i = 0; i < romanNumeralsMap.length; i++) {
+      while (num >= romanNumeralsMap[i].value) {
+        romanNumeral += romanNumeralsMap[i].numeral;
+        num -= romanNumeralsMap[i].value;
+      }
+    }
+
+    return romanNumeral;
+  }
+
+  function convert() {
+    // function to get the input value and convert it to roman numerals
+    const decimalInput = document.getElementById('decimalInput').value;
+    const romanOutput = document.getElementById('romanOutput');
+    romanOutput.innerHTML = convertToRoman(decimalInput);
+  }
+</script>
+<script>
+  function calculateAge() {
+let day = document.getElementById("dob-day").value;
+let month = document.getElementById("dob-month").value;
+let year = document.getElementById("dob-year").value;
+
+let today = new Date();
+let birthdate = new Date(year, month-1, day);
+let ageInMilliseconds = today - birthdate;
+let ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
+let ageInWholeYears = Math.floor(ageInYears);
+let ageInMonths = Math.floor((ageInYears - ageInWholeYears) * 12);
+
+document.getElementById("resultage").innerHTML = "Your age is " + ageInWholeYears + " years and " + ageInMonths + " months.";
+}
+
+
+</script>
+
+<style>
+
+.bmi_calc {
+  background-position: center;
+  position: absolute;
+ 
+  text-align: center;
+  top:27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+
+  padding: 25px;
+  background: url(image/bmi-image.png);
+  background-repeat: no-repeat;
+  background-size: 300px 100px;
+}
+</style>
+<style>
+
+  .Leap_calc {
+    background-position: center;
+    position: absolute;
+   
+    text-align: center;
+    
+    top:25%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: black;
+  
+    padding: 25px;
+    background: url(image/leap_year.jpg);
+    background-repeat: no-repeat;
+    background-size: 300px 100px;
+  }
+  </style>
+<style>
+
+  .Fibonacci_calc {
+    background-position: center;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    color: black;
+    top:39%;
+      left:80%;
+    padding: 25px;
+    background: url(image/Fibonacci_spiral.png);
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+  }
+  </style>
+<style>
+
+  .caesars_calc {
+    background-position: center;
+    position: absolute;
+    text-align: center;
+    top:72%;
+    left:25%;
+    transform: translate(-50%, -50%);
+    color: black;
+    padding: 25px;
+    background: url(image/Cipher.png);
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+  }
+  </style>
+  <style>
+
+    .palindrome_calc {
+      background-position: center;
+      position: absolute;
+      text-align: center;
+      top:115%;
+    left: 50%;
+      transform: translate(-50%, -50%);
+      color: black;
+    
+      padding: 25px;
+      background: url(image/palindrome.png);
+      background-repeat: no-repeat;
+      background-size: 300px 50px;
+    }
+    </style>
+<style>
+
+  .roman_calc {
+    background-position: center;
+    position: absolute;
+   
+    text-align: center;
+    top:70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+  
+    padding: 25px;
+    background: url(image/Clock-numerals-Roman.png);
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+  }
+  </style>
+<style>
+
+  .age_calc {
+    background-position: center;
+    position: absolute;
+   
+    text-align: center;
+    top:95%;
+    left:77%;
+    transform: translate(-50%, -50%);
+    color: black;
+  
+    padding: 25px;
+    background: url(image/age_calc.jpg);
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+  }
+</style>
+
+<style>
+#button{
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#button:hover {
+  background-color: #0062cc;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0062cc;
+}
+</style>
+
+<style>
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #f1c40f;
+}
+</style>
+
+<style>
+label,p {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+</style>
+</head>
+<body >
+  
+<header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <div class="bmi_calc">
+    <br><br>
+    <h1>__BMI Calculator__</h1>
+    <form >
+     
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" name="weight" required><br>
+  
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" name="height" required><br>
+      <input  id="button" type="button" onclick="calculateBMI()" value="Calculate BMI">
+      
+    </form>
+  
+    <div id="result"></div>
+  </div>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="Leap_calc">
+    <br><br>
+    <h1>Leap Year Calculator</h1>
+
+    <label for="year">Enter a year:</label>
+    <input type="number" id="year"><br>
+  
+    <button  onclick="checkLeapYear()">Check Leap Year</button>
+  
+    <p id="result_leap"></p>
+  
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  
+<div class="Fibonacci_calc">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h1 >Fibonacci Generater</h1>
+  <label for="count">Enter number of Fibonacci numbers you want to generate:</label><br>
+  <input type="number" id="count" name="count">
+  <button  onclick="generate()">Generate</button>
+  <p id="resultFibonacciGenerater"></p>
+</div>
+
+<div class="caesars_calc">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br> 
+  <h1>caesars-cipher</h1>
+  <h1><label for="plaintext">Enter the plaintext:</label></h1> 
+  <input type="text" id="plaintext" name="plaintext"><br>
+  <label for="shift">Enter the shift value:</label><br>
+  <input type="number" id="shift" name="shift" min="1"><br>
+  <button  onclick="encrypt()">Encrypt</button>
+  <p id="resultcaesars-cipher"></p>
+</div>
+
+<div class="palindrome_calc">
+  <h1>palindrome-checker</h1>
+  <label for="input">Enter a word or phrase:</label><br>
+  <input type="text" id="input" name="input"><br>
+  <button  onclick="checkPalindrome()">Check Palindrome</button><br>
+  <p id="resultpalindrome-checker"></p>
+</div>
+
+<div class="roman_calc">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h1>Roman Numeral Converter</h1>
+  <label for="decimalInput">Enter a decimal number:</label><br>
+  <input type="number" id="decimalInput"><br>
+  <button  onclick="convert()">Convert to Roman Numerals</button><br>
+  <div id="romanOutput"></div>
+</div>
+
+<div class="age_calc">
+  <br><br><br><br><br><br><br><br>
+  <h1>Age Calculator</h1>
+  <p>Enter your date of birth:</p>
+  <label for="dob-day">Day:</label>
+  <input type="number" id="dob-day" min="1" max="31"><br>
+  <label for="dob-month">Month:</label>
+  <input type="number" id="dob-month" min="1" max="12"><br>
+  <label for="dob-year">Year:</label>
+  <input type="number" id="dob-year" min="1900" max="2100"><br>
+  <button  onclick="calculateAge()">Calculate</button><br>
+  <p id="resultage"></p>  
+</div>
+
+
+</body>
+</html>
